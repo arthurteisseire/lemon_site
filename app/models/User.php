@@ -2,8 +2,6 @@
 
 class User
 {
-    public $name;
-
     public function create($array)
     {
         DataBaseSingleTon::getInstance()->query(
@@ -22,7 +20,7 @@ class User
         $comma = "";
         foreach ($params as $param) {
             $values .= $comma;
-            $values .= $param;
+            $values .= "'" . $param . "'";
             $comma = ",";
         }
         return $values;
