@@ -6,6 +6,7 @@ class RegisterController extends Controller
     {
         $user = $this->model('User');
         $user->name = $name;
-        echo $user->name;
+
+        $this->view('index', ['name' => $user->name]);
     }
 }
