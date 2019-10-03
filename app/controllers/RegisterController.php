@@ -7,6 +7,6 @@ class RegisterController extends Controller
         $user = $this->model('User');
         $user->name = $name;
 
-        $this->view('index', ['name' => $user->name]);
+        $this->view('home', ['name' => $_POST['name']]);
     }
 }
