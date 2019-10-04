@@ -30,7 +30,7 @@
     <div class="form-group row">
         <label> Job <input type="text" name="job" class="form-control"/> </label>
     </div>
-    <input type="submit"/>
+    <input type="submit" class="btn btn-primary"/>
 </form>
 
 <?php
