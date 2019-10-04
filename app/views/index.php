@@ -21,7 +21,8 @@
     </div>
 
     <div class="form-group row">
-        <label> Country <input type="text" name="country" class="form-control"/> </label>
+        <label> Country <input type="text" name="country" class="form-control" value="<?=$data['countryName']?>"/>
+        </label>
     </div>
     <div class="form-group row">
         <label> Job <input type="text" name="job" class="form-control"/> </label>
