@@ -4,7 +4,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $this->view('index');
+        if (isset($_GET['error']) && $_GET['error'] == 1)
+            $this->error();
+        else
+            $this->view('index');
     }
 
     public function error()

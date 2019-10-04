@@ -5,7 +5,7 @@ class RegisterController extends Controller
     public function index($name = '')
     {
         if (!$this->isPostValid()) {
-            header("Location: /Home/error");
+            header("Location: /?error=1");
             exit();
         }
         $user = $this->model('User');
