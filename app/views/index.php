@@ -30,6 +30,10 @@
 </form>
 
 <?php
-    if (isset($data['error']))
-        echo $data['error'];
+if (isset($data['error'])) {
+    ?>
+    <div class="alert alert-danger" role="alert"><?php
+    echo $data['error'];
+    ?></div><?php
+}
 ?>
