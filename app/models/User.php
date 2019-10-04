@@ -5,22 +5,23 @@ class User
     public function create($array)
     {
         DataBaseSingleTon::getInstance()->query(
-            'INSERT INTO users (name, firstname, birthday, mail, sexe, country, job) VALUES (' . $this->arrayToValues($array) . ')');
+            'INSERT INTO users (name, firstname, birthday, mail, password, sexe, country, job) VALUES (' .
+            $this->arrayToValues($array) . ')');
     }
 
     private function arrayToValues($array)
     {
-        return $this->paramToValues($array['name'], $array['firstname'], $array['birthday'], $array['mail'],
-            $array['sexe'], $array['country'], $array['job']);
+        return $this->paramToValues($array,
+            'name', 'firstname', 'birthday', 'mail', 'password', 'sexe', 'country', 'job');
     }
 
-    private function paramToValues(...$params)
+    private function paramToValues($array, ...$params)
     {
         $values = "";
         $comma = "";
         foreach ($params as $param) {
             $values .= $comma;
-            $values .= "'" . $param . "'";
+            $values .= "'" . $array[$param] . "'";
             $comma = ",";
         }
         return $values;
