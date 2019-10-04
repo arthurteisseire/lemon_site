@@ -19,8 +19,8 @@
         Sexe
     </div>
     <div class="form-group row">
-        <label class="mr-4"> <input type="radio" name="sexe" value="male" checked="checked"/> Masculin </label>
-        <label> <input type="radio" name="sexe" value="female"/> Féminin </label>
+        <label class="mr-4"> <input type="radio" name="sexe" value="male" checked="checked"/> Male </label>
+        <label> <input type="radio" name="sexe" value="female"/> Female </label>
     </div>
 
     <div class="form-group row">
