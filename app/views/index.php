@@ -1,4 +1,4 @@
-<form method="post" action="../Register" class="col mx-4 my-4">
+<form method="post" action="Register" class="col mx-4 my-4">
     <div class="form-group row">
         <label> Nom <input type="text" name="name" class="form-control"/> </label>
     </div>
@@ -16,7 +16,7 @@
         Sexe
     </div>
     <div class="form-group row">
-        <label class="mr-4"> <input type="radio" name="sexe" value="male"/> Masculin </label>
+        <label class="mr-4"> <input type="radio" name="sexe" value="male" checked="checked"/> Masculin </label>
         <label> <input type="radio" name="sexe" value="female"/> Féminin </label>
     </div>
 
@@ -28,3 +28,8 @@
     </div>
     <input type="submit"/>
 </form>
+
+<?php
+    if (isset($data['error']))
+        echo $data['error'];
+?>

@@ -6,4 +6,9 @@ class HomeController extends Controller
     {
         $this->view('index');
     }
+
+    public function error()
+    {
+        $this->view('index', ['error' => 'Formulaire invalide']);
+    }
 }
