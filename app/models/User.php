@@ -11,17 +11,17 @@ class User
 
     private function arrayToValues($array)
     {
-        return $this->paramToValues($array,
-            'name', 'firstname', 'birthday', 'mail', 'password', 'sexe', 'country', 'job');
+        return $this->paramToValues($array['name'], $array['firstname'], $array['birthday'], $array['mail'],
+            password_hash($array['password'], PASSWORD_DEFAULT), $array['sexe'], $array['country'], $array['job']);
     }
 
-    private function paramToValues($array, ...$params)
+    private function paramToValues(...$params)
     {
         $values = "";
         $comma = "";
         foreach ($params as $param) {
             $values .= $comma;
-            $values .= "'" . $array[$param] . "'";
+            $values .= "'" . $param . "'";
             $comma = ",";
         }
         return $values;
