@@ -10,7 +10,9 @@ class BackOfficeController extends Controller
 
     public function edit($id)
     {
-        print $id;
+        $user = $this->model('User');
+        $userData = $user->find($id);
+        $this->view('editUser', ['user' => $userData]);
     }
 
     public function delete($id)

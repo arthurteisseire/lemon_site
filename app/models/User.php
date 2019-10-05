@@ -24,6 +24,12 @@ class User
         DataBaseSingleTon::getInstance()->query($stmt);
     }
 
+    public function find($id)
+    {
+        $stmt = "SELECT * FROM users WHERE id = " . $id;
+        return DataBaseSingleTon::getInstance()->query($stmt)->fetch();
+    }
+
     public function findAllCountries()
     {
         $stmt = "SELECT country FROM users GROUP BY country";
