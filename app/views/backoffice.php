@@ -5,7 +5,7 @@
     foreach ($countriesGroup as $country => $users) {
         echo $country . "<br><br>";
         printRow('name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job');
-       foreach ($users as $user)
+        foreach ($users as $user)
             printRow($user['name'], $user['firstname'], $user['birthday'], $user['mail'], $user['sexe'], $user['country'], $user['job']);
         echo '<br><br>';
     }
