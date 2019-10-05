@@ -2,8 +2,13 @@
 
 require_once 'app/core/DataBaseSingleTon.php';
 
-$dsn = 'mysql:dbname=lemon;host=localhost;port=3306;charset=utf8';
-$username = "arthur";
-$pass = "arthur";
+$host = "localhost";
+$dbname = "lemon";
+$port = "3306";
 
-DataBaseSingleTon::connect($dsn, $username, $pass);
+$username = "arthur";
+$password = "arthur";
+
+$dsn = "mysql:dbname=$dbname;host=$host;port=$port;charset=utf8";
+
+DataBaseSingleTon::connect($dsn, $username, $password);
