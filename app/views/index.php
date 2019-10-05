@@ -24,8 +24,18 @@
     </div>
 
     <div class="form-group row">
-        <label> Country <input type="text" name="country" class="form-control" value="<?=$data['countryName']?>"/>
-        </label>
+        <label> Country </label>
+        <select name="country" class="form-control">
+            <?php foreach ($data['countries'] as $country) { ?>
+                <option
+                    <?php if ($country == $data['countryName']) { ?>
+                        selected="selected"
+                    <?php } ?>
+                >
+                    <?php echo $country; ?>
+                </option>
+            <?php } ?>
+        </select>
     </div>
     <div class="form-group row">
         <label> Job <input type="text" name="job" class="form-control"/> </label>
