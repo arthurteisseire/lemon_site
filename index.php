@@ -15,5 +15,5 @@ $app = new App();
 ?>
 
 </body>
-<script src="vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+<script src="/vendor/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 </html>
