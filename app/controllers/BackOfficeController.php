@@ -11,8 +11,9 @@ class BackOfficeController extends Controller
     public function edit($id)
     {
         $user = $this->model('User');
+        $country = $this->model('Country');
         $userData = $user->find($id);
-        $this->view('editUser', ['user' => $userData]);
+        $this->view('editUser', ['countries' => $country->findAllCountriesName(),'user' => $userData]);
     }
 
     public function delete($id)
@@ -25,6 +26,13 @@ class BackOfficeController extends Controller
     public function add($id)
     {
         print $id;
+    }
+
+    public function save()
+    {
+        $user = $this->model('User');
+        $user->save($_POST);
+        $this->goTobackOfficeView();
     }
 
     public function checkPost()

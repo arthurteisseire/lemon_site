@@ -24,6 +24,14 @@ class User
         DataBaseSingleTon::getInstance()->query($stmt);
     }
 
+    public function save($array)
+    {
+        $stmt = "UPDATE users
+                 SET " . $this->arrayToSet($array, 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job') . "
+                 WHERE mail = '" . $array['mail'] . "'";
+        DataBaseSingleTon::getInstance()->query($stmt);
+    }
+
     public function find($id)
     {
         $stmt = "SELECT * FROM users WHERE id = " . $id;
@@ -45,6 +53,17 @@ class User
         $stmt = "SELECT * FROM users";
         $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
         return $res;
+    }
+
+    public function arrayToSet($array, ...$params)
+    {
+        $comma = "";
+        $s = "";
+        foreach ($params as $param) {
+            $s .= "$comma$param = '$array[$param]'";
+            $comma = ",";
+        }
+        return $s;
     }
 
     private function arrayToValues($array)

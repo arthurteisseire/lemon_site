@@ -18,8 +18,8 @@ function printUserRow($user)
 {
     echo '<div class="row">';
     echo '<div class="col-sm">
-            <a href="BackOffice/edit/' . $user['id'] . '">edit</a>
-            <a href="BackOffice/delete/' . $user['id'] . '">delete</a>
+            <a href="/BackOffice/edit/' . $user['id'] . '">edit</a>
+            <a href="/BackOffice/delete/' . $user['id'] . '">delete</a>
           </div>';
     $keys = ['name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
     array_map(function ($key) use ($user) {
@@ -32,7 +32,7 @@ function printInfoRow($countryName)
 {
     $keys = ['NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB'];
     echo '<div class="row">';
-    printInfoCol('<a href="BackOffice/add/' . $countryName . '">add</a>');
+    printInfoCol('<a href="/BackOffice/add/' . $countryName . '">add</a>');
     array_map('printInfoCol', $keys);
     echo '</div>';
 }
