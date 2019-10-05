@@ -4,7 +4,7 @@
     $countriesGroup = $data['countriesGroup'];
     foreach ($countriesGroup as $country => $users) {
         echo '<div>' . $country . "</div>";
-        printInfoRow('NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB');
+        printInfoRow($country);
         foreach ($users as $user)
             printUserRow($user);
         echo '<br><br>';
@@ -17,10 +17,10 @@
 function printUserRow($user)
 {
     echo '<div class="row">';
-    printUserCol('
-        <a href="BackOffice/edit/' . $user['id'] . '">edit</a>
-        <a href="BackOffice/delete/' . $user['id'] . '">delete</a>
-    ');
+    echo '<div class="col-sm">
+            <a href="BackOffice/edit/' . $user['id'] . '">edit</a>
+            <a href="BackOffice/delete/' . $user['id'] . '">delete</a>
+          </div>';
     $keys = ['name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
     array_map(function ($key) use ($user) {
         echo '<div class="col-sm">' . $user[$key] . '</div>';
@@ -28,22 +28,18 @@ function printUserRow($user)
     echo '</div>';
 }
 
-function printUserCol($data)
+function printInfoRow($countryName)
 {
-    echo '<div class="col-sm">' . $data . '</div>';
-}
-
-function printInfoRow(...$params)
-{
+    $keys = ['NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB'];
     echo '<div class="row">';
-    printInfoCol('<a href="BackOffice/add/1">add</a>');
-    array_map('printInfoCol', $params);
+    printInfoCol('<a href="BackOffice/add/' . $countryName . '">add</a>');
+    array_map('printInfoCol', $keys);
     echo '</div>';
 }
 
 function printInfoCol($data)
 {
-    echo '<div class="col-sm" style="background-color: rgba(0, 0, 0, 0.5)">' . $data . '</div>';
+    echo '<div class="col-sm" style="background-color:rgba(0,0,0,0.5)">' . $data . '</div>';
 }
 
 ?>
