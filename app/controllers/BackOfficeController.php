@@ -23,9 +23,10 @@ class BackOfficeController extends Controller
         $this->goTobackOfficeView();
     }
 
-    public function add($id)
+    public function add($countryName)
     {
-        print $id;
+        $country = $this->model('Country');
+        $this->view('index', ['countries' => $country->findAllCountriesName(), 'countryName' => $countryName]);
     }
 
     public function save()
