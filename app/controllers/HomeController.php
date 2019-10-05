@@ -9,6 +9,8 @@ class HomeController extends Controller
         $data = ['countryName' => $countryName, 'countries' => $country->findAllCountriesName()];
         if (isset($_GET['error']) && $_GET['error'] == 1)
             $data['error'] = 'Invalid Form';
+        else if (isset($_GET['success']))
+            $data['success'] = $_GET['success'] . ' : correctly registered';
         $this->view('index', $data);
     }
 

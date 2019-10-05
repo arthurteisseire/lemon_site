@@ -11,7 +11,8 @@ class RegisterController extends Controller
         $user = $this->model('User');
         $user->name = $name;
         $user->create($_POST);
-        $this->view('home', ['name' => $_POST['name']]);
+        $firstname = $_POST['firstname'];
+        header("Location: /?success=$firstname");
     }
 
     private function isPostValid()
