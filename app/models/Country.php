@@ -16,7 +16,6 @@ class Country
         $countryName = function ($elem) {
             return $elem[0];
         };
-        $countries = array_map($countryName, $res);
-        return $countries;
+        return array_map($countryName, $res);
     }
 }

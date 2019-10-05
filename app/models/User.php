@@ -18,6 +18,16 @@ class User
         DataBaseSingleTon::getInstance()->query($stmt);
     }
 
+    public function findAllCountries()
+    {
+        $stmt = "SELECT country FROM users GROUP BY country";
+        $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
+        $countryName = function ($elem) {
+            return $elem[0];
+        };
+        return array_map($countryName, $res);
+    }
+
     private function arrayToValues($array)
     {
         return $this->paramToValues($array['name'], $array['firstname'], $array['birthday'], $array['mail'],
