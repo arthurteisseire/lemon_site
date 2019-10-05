@@ -6,8 +6,7 @@
         echo '<div>' . $country . "</div>";
         printInfoRow('NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB');
         foreach ($users as $user)
-            printUserRow($user['name'], $user['firstname'], $user['birthday'], $user['mail'], $user['sexe'],
-                $user['country'], $user['job']);
+            printUserRow($user);
         echo '<br><br>';
     }
     ?>
@@ -15,14 +14,17 @@
 </div>
 
 <?php
-function printUserRow(...$params)
+function printUserRow($user)
 {
     echo '<div class="row">';
-    echo '<div class="col-sm">
-            <button>edit</button>
-            <button>delete</button>
-          </div>';
-    array_map('printUserCol', $params);
+    printUserCol('
+        <a href="BackOffice/edit/' . $user['id'] . '">edit</a>
+        <a href="BackOffice/delete/' . $user['id'] . '">delete</a>
+    ');
+    $keys = ['name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
+    array_map(function ($key) use ($user) {
+        echo '<div class="col-sm">' . $user[$key] . '</div>';
+    }, $keys);
     echo '</div>';
 }
 
@@ -34,14 +36,14 @@ function printUserCol($data)
 function printInfoRow(...$params)
 {
     echo '<div class="row">';
-    printInfoCol('<button>add</button>');
+    printInfoCol('<a href="BackOffice/add/1">add</a>');
     array_map('printInfoCol', $params);
     echo '</div>';
 }
 
 function printInfoCol($data)
 {
-    echo '<div class="col-sm" style="background-color: rgba(0,0,0,0.5)">' . $data . '</div>';
+    echo '<div class="col-sm" style="background-color: rgba(0, 0, 0, 0.5)">' . $data . '</div>';
 }
 
 ?>

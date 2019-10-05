@@ -8,6 +8,21 @@ class BackOfficeController extends Controller
         $this->redirectIfAdmin();
     }
 
+    public function edit($id)
+    {
+        print $id;
+    }
+
+    public function delete($id)
+    {
+        print $id;
+    }
+
+    public function add($id)
+    {
+        print $id;
+    }
+
     public function checkPost()
     {
         if (empty($_POST['mail']) || empty($_POST['password'])) {
