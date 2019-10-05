@@ -28,6 +28,13 @@ class User
         return array_map($countryName, $res);
     }
 
+    public function findAllUsers()
+    {
+        $stmt = "SELECT * FROM users";
+        $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
+        return $res;
+    }
+
     private function arrayToValues($array)
     {
         return $this->paramToValues($array['name'], $array['firstname'], $array['birthday'], $array['mail'],
