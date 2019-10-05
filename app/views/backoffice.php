@@ -6,7 +6,7 @@
         echo '<div>' . $country . "</div>";
         printInfoRow('NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB');
         foreach ($users as $user)
-            printRow($user['name'], $user['firstname'], $user['birthday'], $user['mail'], $user['sexe'],
+            printUserRow($user['name'], $user['firstname'], $user['birthday'], $user['mail'], $user['sexe'],
                 $user['country'], $user['job']);
         echo '<br><br>';
     }
@@ -15,7 +15,7 @@
 </div>
 
 <?php
-function printRow(...$params)
+function printUserRow(...$params)
 {
     echo '<div class="row">';
     echo '<div class="col-sm">
