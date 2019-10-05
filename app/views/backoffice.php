@@ -2,11 +2,10 @@
     <?php
     $countriesGroup = $data['countriesGroup'];
     foreach ($countriesGroup as $country => $users) {
-        echo '<div class="col-xl">' . $country . '</div>';
+        printCol($country);
         printInfoRow($country);
         foreach ($users as $user)
             printUserRow($user);
-        echo '<br><br>';
     }
     ?>
 </div>
@@ -14,7 +13,7 @@
 <?php
 function printUserRow($user)
 {
-    echo '<div class="row">';
+    echo '<div class="row mb-4">';
     printCol('<a href="/BackOffice/edit/' . $user['id'] . '">edit</a>
                     <a href="/BackOffice/delete/' . $user['id'] . '">delete</a>');
     $keys = ['name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
