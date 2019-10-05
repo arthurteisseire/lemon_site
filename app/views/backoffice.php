@@ -3,8 +3,8 @@
     <?php
     $countriesGroup = $data['countriesGroup'];
     foreach ($countriesGroup as $country => $users) {
-        echo $country . "<br><br>";
-        printRow('name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job');
+        echo '<div>' . $country . "</div>";
+        printRow('NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB');
         foreach ($users as $user)
             printRow($user['name'], $user['firstname'], $user['birthday'], $user['mail'], $user['sexe'], $user['country'], $user['job']);
         echo '<br><br>';
