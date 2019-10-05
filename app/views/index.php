@@ -15,12 +15,19 @@
         <label> Password <input type="password" name="password" class="form-control"/> </label>
     </div>
 
-    <div class="form-group row">
-        Sexe
-    </div>
-    <div class="form-group row">
-        <label class="mr-4"> <input type="radio" name="sexe" value="male" checked="checked"/> Male </label>
-        <label> <input type="radio" name="sexe" value="female"/> Female </label>
+    <div>
+        <div class="form-group row">
+            Sexe
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline1" name="sexe" value="male" checked="checked"
+                   class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline1">Male</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="customRadioInline2" name="sexe" value="female" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline2">Female</label>
+        </div>
     </div>
 
     <div class="form-group row">
