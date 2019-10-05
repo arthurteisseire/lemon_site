@@ -2,11 +2,20 @@
 
 class User
 {
+    public function isAdmin($mail, $password)
+    {
+        $stmt = "SELECT password, is_admin FROM users WHERE mail = '" . $mail . "'";
+        $response = DataBaseSingleTon::getInstance()->query($stmt)->fetch();
+        if (password_verify($password, $response['password']))
+            return $response['is_admin'];
+        return false;
+    }
+
     public function create($array)
     {
-        DataBaseSingleTon::getInstance()->query(
-            'INSERT INTO users (name, firstname, birthday, mail, password, sexe, country, job) VALUES (' .
-            $this->arrayToValues($array) . ')');
+        $stmt = 'INSERT INTO users (name, firstname, birthday, mail, password, sexe, country, job)
+                 VALUES (' . $this->arrayToValues($array) . ')';
+        DataBaseSingleTon::getInstance()->query($stmt);
     }
 
     private function arrayToValues($array)
