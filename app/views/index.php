@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="form-group row">
+    <div class="form-group row mt-4">
         <label>
             Country
             <select name="country" class="form-control">
