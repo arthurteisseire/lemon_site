@@ -15,7 +15,9 @@ class BackOfficeController extends Controller
 
     public function delete($id)
     {
-        print $id;
+        $user = $this->model('User');
+        $user->delete($id);
+        $this->goTobackOfficeView();
     }
 
     public function add($id)
@@ -35,11 +37,16 @@ class BackOfficeController extends Controller
     {
         $user = $this->model('User');
         if ($user->isAdmin($_POST['mail'], $_POST['password'])) {
-            $this->view('backoffice', ['countriesGroup' => $this->findUsersGroupedByCountry()]);
+            $this->goTobackOfficeView();
         } else {
             header("Location: /Admin?error=2");
             exit();
         }
+    }
+
+    private function goTobackOfficeView()
+    {
+        $this->view('backoffice', ['countriesGroup' => $this->findUsersGroupedByCountry()]);
     }
 
     private function findUsersGroupedByCountry()

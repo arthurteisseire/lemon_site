@@ -11,6 +11,12 @@ class User
         return false;
     }
 
+    public function delete($id)
+    {
+        $stmt = "DELETE FROM users WHERE id = " . $id;
+        DataBaseSingleTon::getInstance()->query($stmt);
+    }
+
     public function create($array)
     {
         $stmt = 'INSERT INTO users (name, firstname, birthday, mail, password, sexe, country, job)
