@@ -6,15 +6,10 @@ class HomeController extends Controller
     {
         $country = $this->model('Country');
         $countryName = $country->findCountryNameFromCountryCode($this->findCountryCode());
+        $data = ['countryName' => $countryName, 'countries' => $country->findAllCountriesName()];
         if (isset($_GET['error']) && $_GET['error'] == 1)
-            $this->error();
-        else
-            $this->view('index', ['countryName' => $countryName]);
-    }
-
-    public function error()
-    {
-        $this->view('index', ['error' => 'Formulaire invalide']);
+            $data['error'] = 'Invalid Form';
+        $this->view('index', $data);
     }
 
     private function findCountryCode()
