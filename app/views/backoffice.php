@@ -4,28 +4,25 @@
     $countriesGroup = $data['countriesGroup'];
     foreach ($countriesGroup as $country => $users) {
         echo $country . "<br><br>";
-        echo '<div class="row">';
-        echo '<div class="col-sm">name</div>';
-        echo '<div class="col-sm">firstname</div>';
-        echo '<div class="col-sm">birthday</div>';
-        echo '<div class="col-sm">mail</div>';
-        echo '<div class="col-sm">sexe</div>';
-        echo '<div class="col-sm">country</div>';
-        echo '<div class="col-sm">job</div>';
-        echo '</div>';
-        foreach ($users as $user) {
-            echo '<div class="row">';
-            echo '<div class="col-sm">' . $user['name'] . '</div>';
-            echo '<div class="col-sm">' . $user['firstname'] . '</div>';
-            echo '<div class="col-sm">' . $user['birthday'] . '</div>';
-            echo '<div class="col-sm">' . $user['mail'] . '</div>';
-            echo '<div class="col-sm">' . $user['sexe'] . '</div>';
-            echo '<div class="col-sm">' . $user['country'] . '</div>';
-            echo '<div class="col-sm">' . $user['job'] . '</div>';
-            echo '</div>';
-        }
+        printRow('name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job');
+       foreach ($users as $user)
+            printRow($user['name'], $user['firstname'], $user['birthday'], $user['mail'], $user['sexe'], $user['country'], $user['job']);
         echo '<br><br>';
     }
     ?>
 
 </div>
+
+<?php
+function printRow(...$params)
+{
+    echo '<div class="row">';
+    foreach ($params as $param)
+        printCol($param);
+    echo '</div>';
+}
+
+function printCol($data)
+{
+    echo '<div class="col-sm">' . $data . '</div>';
+}
