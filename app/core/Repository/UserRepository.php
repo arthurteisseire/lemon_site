@@ -55,6 +55,21 @@ class UserRepository
         return $user;
     }
 
+    private static function serialize($user)
+    {
+        $serializedUser['id'] = $user->getId();
+        $serializedUser['name'] = $user->getName();
+        $serializedUser['firstname'] = $user->getFirstname();
+        $serializedUser['birthday'] = $user->getBirthday();
+        $serializedUser['mail'] = $user->getMail();
+        $serializedUser['password'] = $user->getPassword();
+        $serializedUser['sexe'] = $user->getSexe();
+        $serializedUser['country'] = $user->getCountry();
+        $serializedUser['job'] = $user->getJob();
+        $serializedUser['is_admin'] = $user->isAdmin();
+        return $serializedUser;
+    }
+
     public function findAllCountries()
     {
         $stmt = "SELECT country FROM users GROUP BY country";

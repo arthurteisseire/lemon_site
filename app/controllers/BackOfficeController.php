@@ -10,9 +10,8 @@ class BackOfficeController extends Controller
 
     public function edit($id)
     {
-        $country = $this->model('CountryRepository');
         $user = UserRepository::findById($id);
-        $this->view('editUser', ['countries' => $country->findAllCountriesName(),'user' => $user]);
+        $this->view('editUser', ['countries' => CountryRepository::findAllCountriesName(),'user' => $user]);
     }
 
     public function delete($id)

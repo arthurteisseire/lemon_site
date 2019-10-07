@@ -1,4 +1,4 @@
-<form method="post" action="Register" class="col mx-4 my-4">
+<form method="post" action="/Register" class="col mx-4 my-4">
     <div class="form-group row">
         <label> Name <input type="text" name="name" class="form-control"/> </label>
     </div>
