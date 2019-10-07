@@ -1,6 +1,6 @@
 <?php
 
-class Country
+class CountryRepository
 {
     public function findCountryNameFromCountryCode($countryCode)
     {

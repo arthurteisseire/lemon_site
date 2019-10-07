@@ -4,9 +4,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $country = $this->model('Country');
-        $countryName = $country->findCountryNameFromCountryCode($this->findCountryCode());
-        $data = ['countryName' => $countryName, 'countries' => $country->findAllCountriesName()];
+        $countryName = CountryRepository::findCountryNameFromCountryCode($this->findCountryCode());
+        $data = ['countryName' => $countryName, 'countries' => CountryRepository::findAllCountriesName()];
         if (isset($_GET['error']) && $_GET['error'] == 1)
             $data['error'] = 'Invalid Form';
         else if (isset($_GET['success']))

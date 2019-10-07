@@ -10,7 +10,7 @@ class BackOfficeController extends Controller
 
     public function edit($id)
     {
-        $country = $this->model('Country');
+        $country = $this->model('CountryRepository');
         $user = UserRepository::findById($id);
         $this->view('editUser', ['countries' => $country->findAllCountriesName(),'user' => $user]);
     }
@@ -23,8 +23,7 @@ class BackOfficeController extends Controller
 
     public function add($countryName)
     {
-        $country = $this->model('Country');
-        $this->view('index', ['countries' => $country->findAllCountriesName(), 'countryName' => $countryName]);
+        $this->view('index', ['countries' => CountryRepository::findAllCountriesName(), 'countryName' => $countryName]);
     }
 
     public function save($id)
