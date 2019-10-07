@@ -2,85 +2,131 @@
 
 class User
 {
-    public function isAdmin($mail, $password)
+    protected $id;
+    protected $name;
+    protected $firstname;
+    protected $birthday;
+    protected $mail;
+    protected $password;
+    protected $sexe;
+    protected $country;
+    protected $job;
+    protected $isAdmin;
+
+    public function getId()
     {
-        $stmt = "SELECT password, is_admin FROM users WHERE mail = '" . $mail . "'";
-        $response = DataBaseSingleTon::getInstance()->query($stmt)->fetch();
-        if (password_verify($password, $response['password']))
-            return $response['is_admin'];
-        return false;
+        return $this->id;
     }
 
-    public function delete($id)
+    public function setId($id)
     {
-        $stmt = "DELETE FROM users WHERE id = " . $id;
-        DataBaseSingleTon::getInstance()->query($stmt);
+       $this->id = $id;
     }
 
-    public function create($array)
+    public function getName()
     {
-        $stmt = 'INSERT INTO users (name, firstname, birthday, mail, password, sexe, country, job)
-                 VALUES (' . $this->arrayToValues($array) . ')';
-        DataBaseSingleTon::getInstance()->query($stmt);
+        return $this->name;
     }
 
-    public function save($array)
+    public function setName($name)
     {
-        $stmt = "UPDATE users
-                 SET " . $this->arrayToSet($array, 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job') . "
-                 WHERE mail = '" . $array['mail'] . "'";
-        DataBaseSingleTon::getInstance()->query($stmt);
+        $this->name = $name;
     }
 
-    public function find($id)
+    public function getFirstname()
     {
-        $stmt = "SELECT * FROM users WHERE id = " . $id;
-        return DataBaseSingleTon::getInstance()->query($stmt)->fetch();
+        return $this->firstname;
     }
 
-    public function findAllCountries()
+    public function setFirstname($firstname)
     {
-        $stmt = "SELECT country FROM users GROUP BY country";
-        $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
-        $countryName = function ($elem) {
-            return $elem[0];
-        };
-        return array_map($countryName, $res);
+        $this->firstname = $firstname;
     }
 
-    public function findAllUsers()
+    public function getBirthday()
     {
-        $stmt = "SELECT * FROM users";
-        $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
-        return $res;
+        return $this->birthday;
     }
 
-    public function arrayToSet($array, ...$params)
+    public function setBirthday($birthday)
     {
-        $comma = "";
-        $s = "";
-        foreach ($params as $param) {
-            $s .= "$comma$param = '$array[$param]'";
-            $comma = ",";
-        }
-        return $s;
+        $this->birthday = $birthday;
     }
 
-    private function arrayToValues($array)
+    public function getMail()
     {
-        return $this->paramToValues($array['name'], $array['firstname'], $array['birthday'], $array['mail'],
-            password_hash($array['password'], PASSWORD_DEFAULT), $array['sexe'], $array['country'], $array['job']);
+        return $this->mail;
     }
 
-    private function paramToValues(...$params)
+    public function setMail($mail)
     {
-        $values = "";
-        $comma = "";
-        foreach ($params as $param) {
-            $values .= $comma;
-            $values .= "'" . $param . "'";
-            $comma = ",";
-        }
-        return $values;
+        $this->mail = $mail;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+    }
+
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    public function setJob($job)
+    {
+        $this->job = $job;
+    }
+
+    public function isAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+    }
+
+    public function setFromArray($array)
+    {
+        $this->setIfIsSet($array, 'name');
+        $this->setIfIsSet($array, 'firstname');
+        $this->setIfIsSet($array, 'birthday');
+        $this->setIfIsSet($array, 'mail');
+        $this->setIfIsSet($array, 'sexe');
+        $this->setIfIsSet($array, 'country');
+        $this->setIfIsSet($array, 'job');
+    }
+
+    private function setIfIsSet($array, $attr)
+    {
+        $method = 'set' . ucfirst($attr);
+        $this->$method($array[$attr]);
     }
 }

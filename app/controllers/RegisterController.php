@@ -8,9 +8,7 @@ class RegisterController extends Controller
             header("Location: /?error=1");
             exit();
         }
-        $user = $this->model('User');
-        $user->name = $name;
-        $user->create($_POST);
+        UserRepository::create($_POST);
         $firstname = $_POST['firstname'];
         header("Location: /?success=$firstname");
     }

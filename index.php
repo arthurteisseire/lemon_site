@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <title>Lemon site</title>

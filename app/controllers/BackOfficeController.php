@@ -10,16 +10,14 @@ class BackOfficeController extends Controller
 
     public function edit($id)
     {
-        $user = $this->model('User');
         $country = $this->model('Country');
-        $userData = $user->find($id);
-        $this->view('editUser', ['countries' => $country->findAllCountriesName(),'user' => $userData]);
+        $user = UserRepository::findById($id);
+        $this->view('editUser', ['countries' => $country->findAllCountriesName(),'user' => $user]);
     }
 
     public function delete($id)
     {
-        $user = $this->model('User');
-        $user->delete($id);
+        UserRepository::deleteById($id);
         $this->goTobackOfficeView();
     }
 
@@ -29,10 +27,11 @@ class BackOfficeController extends Controller
         $this->view('index', ['countries' => $country->findAllCountriesName(), 'countryName' => $countryName]);
     }
 
-    public function save()
+    public function save($id)
     {
-        $user = $this->model('User');
-        $user->save($_POST);
+        $user = UserRepository::findById($id);
+        $user->setFromArray($_POST);
+        UserRepository::save($user);
         $this->goTobackOfficeView();
     }
 
@@ -46,8 +45,8 @@ class BackOfficeController extends Controller
 
     public function redirectIfAdmin()
     {
-        $user = $this->model('User');
-        if ($user->isAdmin($_POST['mail'], $_POST['password'])) {
+        $user = UserRepository::findByMail($_POST['mail']);
+        if ($user->isAdmin()) {
             $this->goTobackOfficeView();
         } else {
             header("Location: /Admin?error=2");
@@ -62,9 +61,8 @@ class BackOfficeController extends Controller
 
     private function findUsersGroupedByCountry()
     {
-        $user = $this->model('User');
-        $countries = $user->findAllCountries();
-        $users = $user->findAllUsers();
+        $countries = UserRepository::findAllCountries();
+        $users = UserRepository::findAllUsers();
         $array = [];
         foreach ($countries as $country) {
             $array[$country] = array_values(array_filter($users, function ($user) use ($country) {
