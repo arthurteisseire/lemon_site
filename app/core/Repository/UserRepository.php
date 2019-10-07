@@ -35,7 +35,6 @@ class UserRepository
         $stmt = "UPDATE users
                  SET " . self::arrayToSet(self::serialize($user), 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job') . "
                  WHERE id = " . $user->getId();
-        print $stmt;
         DataBaseSingleTon::getInstance()->query($stmt);
     }
 
@@ -55,7 +54,7 @@ class UserRepository
         return $user;
     }
 
-    private static function serialize($user)
+    public static function serialize($user)
     {
         $serializedUser['id'] = $user->getId();
         $serializedUser['name'] = $user->getName();
@@ -85,6 +84,19 @@ class UserRepository
         $stmt = "SELECT * FROM users";
         $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
         return $res;
+    }
+
+    public static function findUsersGroupedByCountry()
+    {
+        $countries = UserRepository::findAllCountries();
+        $users = UserRepository::findAllUsers();
+        $array = [];
+        foreach ($countries as $country) {
+            $array[$country] = array_values(array_filter($users, function ($user) use ($country) {
+                return $user['country'] == $country;
+            }));
+        }
+        return $array;
     }
 
     public static function arrayToSet($array, ...$params)
