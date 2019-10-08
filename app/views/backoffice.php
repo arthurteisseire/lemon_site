@@ -12,10 +12,10 @@ function printUserRow($user)
 {
     $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
     echo '<tbody><td></td>';
-    printCol('<a class="btn btn-danger" href="/BackOffice/delete/' . $user['id'] . '">x</a>
-                    <a class="btn btn-primary" href="/BackOffice/edit/' . $user['id'] . '">edit</a>');
     foreach ($keys as $key)
         printCol($user[$key]);
+    printCol('<a class="btn btn-danger" href="/BackOffice/delete/' . $user['id'] . '">x</a>
+                    <a class="btn btn-primary" href="/BackOffice/edit/' . $user['id'] . '">edit</a>');
     echo '</tbody>';
 }
 
@@ -30,8 +30,8 @@ function printInfoRow($countryName)
     $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
     echo '<thead class="thead-dark"><tr>';
     printInfoCol($countryName);
-    printInfoCol($addButton);
     array_map('printInfoCol', $keys);
+    printInfoCol($addButton);
     echo '</tr></thead>';
 }
 
