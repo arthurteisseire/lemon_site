@@ -12,8 +12,8 @@ function printUserRow($user)
 {
     $keys = ['name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
     echo '<tbody>';
-    printCol('<a href="/BackOffice/edit/' . $user['id'] . '">edit</a>
-                    <a href="/BackOffice/delete/' . $user['id'] . '">delete</a>');
+    printCol('<a class="btn btn-danger" href="/BackOffice/delete/' . $user['id'] . '">x</a>
+                    <a class="btn btn-primary" href="/BackOffice/edit/' . $user['id'] . '">edit</a>');
     foreach ($keys as $key)
         printCol($user[$key]);
     echo '</tbody>';
@@ -21,7 +21,8 @@ function printUserRow($user)
 
 function printInfoRow($countryName)
 {
-    $keys = [$countryName . ' <a href="/BackOffice/add/' . $countryName . '">add</a>', 'NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB'];
+    $head = "<p style='float: right'>$countryName</p><a class='btn btn-primary' style='float: left;' href='/BackOffice/add/$countryName'>add</a>";
+    $keys = [$head, 'NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB'];
     echo '<thead><tr>';
     array_map('printCol', $keys);
     echo '</tr></thead>';
