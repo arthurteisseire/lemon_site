@@ -12,7 +12,7 @@ class BackOfficeController extends Controller
     {
         if (!empty($_POST['mail']) || !empty($_POST['password'])) {
             $user = UserRepository::findByMail($_POST['mail']);
-            if (password_verify($_POST['password'], $user->getPassword())) {
+            if (password_verify($_POST['password'], $user->getPassword()) && $user->isAdmin()) {
                 $_SESSION['isAdmin'] = true;
             }
         }
