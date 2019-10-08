@@ -1,7 +1,7 @@
 <?php
 $countriesGroup = $data['countriesGroup'];
 foreach ($countriesGroup as $country => $users) {
-    echo '<table class="table table-dark table-bordered">';
+    echo '<table class="table table-bordered table-striped mb-4">';
     printInfoRow($country);
     foreach ($users as $user)
         printUserRow($user);
@@ -10,8 +10,8 @@ foreach ($countriesGroup as $country => $users) {
 
 function printUserRow($user)
 {
-    $keys = ['name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
-    echo '<tbody>';
+    $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
+    echo '<tbody><td></td>';
     printCol('<a class="btn btn-danger" href="/BackOffice/delete/' . $user['id'] . '">x</a>
                     <a class="btn btn-primary" href="/BackOffice/edit/' . $user['id'] . '">edit</a>');
     foreach ($keys as $key)
@@ -19,16 +19,23 @@ function printUserRow($user)
     echo '</tbody>';
 }
 
+function printCol($data)
+{
+    echo '<td style="text-align: center">' . $data . '</td>';
+}
+
 function printInfoRow($countryName)
 {
-    $head = "<p style='float: right'>$countryName</p><a class='btn btn-primary' style='float: left;' href='/BackOffice/add/$countryName'>add</a>";
-    $keys = [$head, 'NAME', 'FIRSTNAME', 'BIRTHDAY', 'MAIL', 'SEXE', 'COUNTRY', 'JOB'];
-    echo '<thead><tr>';
-    array_map('printCol', $keys);
+    $addButton = "<a class='btn btn-primary' href='/BackOffice/add/$countryName'>add</a>";
+    $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
+    echo '<thead class="thead-dark"><tr>';
+    printInfoCol($countryName);
+    printInfoCol($addButton);
+    array_map('printInfoCol', $keys);
     echo '</tr></thead>';
 }
 
-function printCol($data)
+function printInfoCol($data)
 {
-    echo '<td>' . $data . '</td>';
+    echo '<th style="text-align: center">' . $data . '</th>';
 }
