@@ -14,8 +14,8 @@ function printUserRow($user)
     echo '<tbody><td></td>';
     foreach ($keys as $key)
         printCol($user[$key]);
-    printCol('<a class="btn btn-danger" href="/BackOffice/delete/' . $user['id'] . '">x</a>
-                    <a class="btn btn-primary" href="/BackOffice/edit/' . $user['id'] . '">edit</a>');
+    printCol('<a class="btn btn-primary" href="/BackOffice/edit/' . $user['id'] . '">edit</a>
+                    <a class="btn btn-danger" href="/BackOffice/delete/' . $user['id'] . '">x</a>');
     echo '</tbody>';
 }
 
