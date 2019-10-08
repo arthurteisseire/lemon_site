@@ -5,12 +5,23 @@ class RegisterController extends Controller
     public function index($name = '')
     {
         if (!$this->isPostValid()) {
-            header("Location: /?error=1");
-            exit();
+            if ($_SESSION['isAdmin']) {
+                header("Location: /BackOffice/?error=1");
+                exit();
+            } else {
+                header("Location: /?error=1");
+                exit();
+            }
         }
         UserRepository::create($_POST);
         $firstname = $_POST['firstname'];
-        header("Location: /?success=$firstname");
+        if ($_SESSION['isAdmin']) {
+            header("Location: /BackOffice");
+            exit();
+        } else {
+            header("Location: /?success=$firstname");
+            exit();
+        }
     }
 
     private function isPostValid()
