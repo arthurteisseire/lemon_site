@@ -10,7 +10,7 @@ foreach ($countriesGroup as $country => $users) {
 
 function printUserRow($user)
 {
-    $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
+    $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job', 'isAdmin'];
     echo '<tbody><td></td>';
     foreach ($keys as $key)
         printCol($user[$key]);
@@ -27,7 +27,7 @@ function printCol($data)
 function printInfoRow($countryName)
 {
     $addButton = "<a class='btn btn-primary' href='/BackOffice/add/$countryName'>add</a>";
-    $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job'];
+    $keys = ['id', 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job', 'isAdmin'];
     echo '<thead class="thead-dark"><tr>';
     printInfoCol($countryName);
     array_map('printInfoCol', $keys);

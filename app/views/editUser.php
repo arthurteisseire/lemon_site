@@ -2,20 +2,21 @@
 $user = $data['user'];
 ?>
 
-<form method="post" action="/BackOffice/save/<?=$user->getId()?>" class="col mx-4 my-4">
+<form method="post" action="/BackOffice/save/<?= $user->getId() ?>" class="col mx-4 my-4">
     <div class="form-group row">
-        <label> Name <input type="text" name="name" class="form-control" value="<?=$user->getName()?>"/> </label>
+        <label> Name <input type="text" name="name" class="form-control" value="<?= $user->getName() ?>"/> </label>
     </div>
     <div class="form-group row">
-        <label> Firstname <input type="text" name="firstname" class="form-control" value="<?=$user->getFirstname()?>"/>
+        <label> Firstname <input type="text" name="firstname" class="form-control"
+                                 value="<?= $user->getFirstname() ?>"/>
         </label>
     </div>
     <div class="form-group row">
-        <label> Birthday <input type="date" name="birthday" class="form-control" value="<?=$user->getBirthday()?>"/>
+        <label> Birthday <input type="date" name="birthday" class="form-control" value="<?= $user->getBirthday() ?>"/>
         </label>
     </div>
     <div class="form-group row">
-        <label> Mail <input type="email" name="mail" class="form-control" value="<?=$user->getMail()?>"/> </label>
+        <label> Mail <input type="email" name="mail" class="form-control" value="<?= $user->getMail() ?>"/> </label>
     </div>
 
     <div>
@@ -24,12 +25,14 @@ $user = $data['user'];
         </div>
         <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" id="customRadioInline1" name="sexe" value="male"
-                <?php if ($user->getSexe() == 'male') echo 'checked="checked"'?> class="custom-control-input">
+                <?php if ($user->getSexe() == 'male')
+                    echo 'checked="checked"' ?> class="custom-control-input">
             <label class="custom-control-label" for="customRadioInline1">Male</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline">
             <input type="radio" id="customRadioInline2" name="sexe" value="female"
-                <?php if ($user->getSexe() == 'female') echo 'checked="checked"'?> class="custom-control-input">
+                <?php if ($user->getSexe() == 'female')
+                    echo 'checked="checked"' ?> class="custom-control-input">
             <label class="custom-control-label" for="customRadioInline2">Female</label>
         </div>
     </div>
@@ -51,7 +54,10 @@ $user = $data['user'];
         </label>
     </div>
     <div class="form-group row">
-        <label> Job <input type="text" name="job" class="form-control" value="<?=$user->getJob()?>"/> </label>
+        <label> Job <input type="text" name="job" class="form-control" value="<?= $user->getJob() ?>"/></label>
+    </div>
+    <div class="form-group row">
+        <label> isAdmin <input type="text" name="isAdmin" class="form-control" value="<?= $user->isAdmin() ?>"/></label>
     </div>
     <input type="submit" class="btn btn-primary" value="save"/>
 </form>

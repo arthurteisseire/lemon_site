@@ -33,7 +33,7 @@ class UserRepository
     public function save($user)
     {
         $stmt = "UPDATE users
-                 SET " . self::arrayToSet(self::serialize($user), 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job') . "
+                 SET " . self::arrayToSet(self::serialize($user), 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job', 'isAdmin') . "
                  WHERE id = " . $user->getId();
         DataBaseSingleTon::getInstance()->query($stmt);
     }
@@ -65,7 +65,7 @@ class UserRepository
         $serializedUser['sexe'] = $user->getSexe();
         $serializedUser['country'] = $user->getCountry();
         $serializedUser['job'] = $user->getJob();
-        $serializedUser['is_admin'] = $user->isAdmin();
+        $serializedUser['isAdmin'] = $user->isAdmin();
         return $serializedUser;
     }
 

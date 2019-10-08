@@ -122,6 +122,7 @@ class User
         $this->setIfIsSet($array, 'sexe');
         $this->setIfIsSet($array, 'country');
         $this->setIfIsSet($array, 'job');
+        $this->setIfIsSet($array, 'isAdmin');
     }
 
     private function setIfIsSet($array, $attr)
