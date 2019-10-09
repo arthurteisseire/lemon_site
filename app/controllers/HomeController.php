@@ -22,7 +22,7 @@ class HomeController extends Controller
     private function findExternalIp()
     {
         $externalContent = file_get_contents('http://checkip.dyndns.com/');
-        preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)\]?/', $externalContent, $m);
+        preg_match('/Current IP Address: \[?([:.0-9a-fA-F]+)]?/', $externalContent, $m);
         return $m[1];
     }
 }

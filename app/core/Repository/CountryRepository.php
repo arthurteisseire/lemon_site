@@ -2,14 +2,14 @@
 
 class CountryRepository
 {
-    public function findCountryNameFromCountryCode($countryCode)
+    public static function findCountryNameFromCountryCode($countryCode)
     {
         $stmt = "SELECT country_name FROM countries WHERE country_code = '" . $countryCode . "'";
         $res = DataBaseSingleTon::getInstance()->query($stmt)->fetch();
         return $res['country_name'];
     }
 
-    public function findAllCountriesName()
+    public static function findAllCountriesName()
     {
         $stmt = "SELECT country_name FROM countries";
         $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();

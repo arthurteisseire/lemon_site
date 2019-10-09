@@ -30,7 +30,7 @@ class UserRepository
         DataBaseSingleTon::getInstance()->query($stmt);
     }
 
-    public function save($user)
+    public static function save($user)
     {
         $stmt = "UPDATE users
                  SET " . self::arrayToSet(self::serialize($user), 'name', 'firstname', 'birthday', 'mail', 'sexe', 'country', 'job', 'isAdmin') . "

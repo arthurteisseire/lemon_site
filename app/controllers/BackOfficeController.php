@@ -57,10 +57,6 @@ class BackOfficeController extends Controller
         }
     }
 
-    public function register()
-    {
-    }
-
     public function save($id)
     {
         $user = UserRepository::findById($id);
