@@ -9,3 +9,4 @@
  
 ## Admin
  - Admin view is accessible from /Admin link
+ - /Disconnection permits disconnection
