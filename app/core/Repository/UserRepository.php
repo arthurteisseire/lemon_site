@@ -69,7 +69,7 @@ class UserRepository
         return $serializedUser;
     }
 
-    public function findAllCountries()
+    public static function findAllCountries()
     {
         $stmt = "SELECT country FROM users GROUP BY country";
         $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
@@ -79,7 +79,7 @@ class UserRepository
         return array_map($countryName, $res);
     }
 
-    public function findAllUsers()
+    public static function findAllUsers()
     {
         $stmt = "SELECT * FROM users";
         $res = DataBaseSingleTon::getInstance()->query($stmt)->fetchAll();
